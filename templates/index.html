@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My movies</title>
+</head>
+
+<body>
+    <h1>My movies</h1>
+
+    <form action="/add" method="post">
+        <div class="field">
+            <label for="title">Назва фільму</label>
+            <input type="text" name="title" placeholder="Введіть назву фільму..." />
+            <button type="submit">Добавити</button>
+        </div>
+    </form>
+
+    {% for movie in movies %}
+    <p> {{ movie.id }} | {{ movie.title }}</p>
+
+    {% if movie.seen == False %}
+    <span>Не переглянуто</span>
+    {% else %}
+    <span>Переглянуто</span>
+    {% endif %}
+
+    <a href="/update/{{ movie.id }}">Оновити статус</a>
+    <a href="/delete/{{ movie.id }}">Видалити</a>
+    {% endfor %}
+</body>
+
+</html>
